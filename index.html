@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Resume Builder — Free One-Page CV Maker, Print to PDF | S3eidat Tools</title>
+<meta name="description" content="Build a clean one-page resume in your browser: 3 templates, accent colour, reorder sections, Arabic RTL support, live A4 preview, print to PDF. Free, private, no sign-up.">
+<meta property="og:title" content="Resume Builder — free, private CV maker">
+<meta property="og:description" content="A clean one-page CV with 3 templates and RTL support. Print to PDF. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="resume-builder">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Resume Builder</h1>
+    <p>Fill in your details, pick a template, and print a clean one-page CV to PDF. Everything autosaves in this browser only.</p>
+    <div class="s3-badges"><span class="chip accent"><svg class="i"><use href="#i-lock"/></svg>Saved locally, never uploaded</span><span class="chip">3 templates</span><span class="chip">Arabic / RTL</span></div>
+  </section>
+
+  <section class="card cv-bar no-print">
+    <div class="row">
+      <div class="seg" id="tpl" role="group" aria-label="Template">
+        <button aria-pressed="true" data-v="classic">Classic</button>
+        <button aria-pressed="false" data-v="modern">Modern</button>
+        <button aria-pressed="false" data-v="compact">Compact</button>
+      </div>
+      <label class="check">Accent <input type="color" id="accent" aria-label="Accent colour"></label>
+      <label class="check"><input type="checkbox" id="rtl"> Arabic / RTL</label>
+      <span class="grow"></span>
+      <button class="btn small ghost danger" id="reset"><svg class="i"><use href="#i-trash"/></svg>Clear</button>
+      <label class="btn small ghost" id="imp"><svg class="i"><use href="#i-upload"/></svg>Import<input type="file" accept=".json,application/json" hidden></label>
+      <button class="btn small ghost" id="exp"><svg class="i"><use href="#i-download"/></svg>Export</button>
+      <button class="btn small primary" id="print"><svg class="i"><use href="#i-file"/></svg>Print / PDF</button>
+    </div>
+  </section>
+
+  <div class="cv-layout mt">
+    <div class="cv-editor stack no-print" id="editor">
+      <section class="card">
+        <h2>Contact</h2>
+        <div class="grid-2">
+          <label class="field">Full name<input class="input" data-k="contact.name" dir="auto" maxlength="100"></label>
+          <label class="field">Headline<input class="input" data-k="contact.title" dir="auto" maxlength="120" placeholder="e.g. Product Designer"></label>
+          <label class="field">Email<input class="input" data-k="contact.email" dir="auto" maxlength="120"></label>
+          <label class="field">Phone<input class="input" data-k="contact.phone" dir="auto" maxlength="60"></label>
+          <label class="field">Location<input class="input" data-k="contact.location" dir="auto" maxlength="100"></label>
+          <label class="field">Website / LinkedIn<input class="input" data-k="contact.website" dir="auto" maxlength="160"></label>
+        </div>
+      </section>
+      <div class="stack" id="sections"></div>
+    </div>
+
+    <section class="paper-wrap" aria-label="Resume preview">
+      <div class="paper" id="paper"></div>
+      <p class="faint mt no-print center">Tip: in the print dialog choose “Save as PDF” and turn off “Headers and footers”.</p>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+.cv-bar { padding: 12px 14px; }
+.cv-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 14px; align-items: start; }
+.cv-editor .field.wide { grid-column: 1 / -1; }
+.entry { padding: 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); display: grid; gap: 8px; }
+.entry .input, .entry .textarea { background: var(--surface); }
+.entry .textarea { min-height: 84px; }
+.sec .textarea { min-height: 96px; }
+.sec-move .btn { width: 30px; padding: 0; font-size: 15px; }
+.sec > .row { margin-bottom: 12px; }
+
+/* The paper is a document: white with dark ink in both themes; sizes in em so it scales like A4. */
+.paper-wrap { position: sticky; top: 74px; container-type: inline-size; }
+.paper {
+  --ink: #0e7c86;
+  background: #fff; color: #23272e; font-size: 1.6cqw; line-height: 1.45;
+  aspect-ratio: 210 / 297; padding: 4.4em 4.4em; border-radius: 6px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .06);
+  overflow-wrap: anywhere;
+}
+.paper[dir="rtl"] { font-family: "Noto Naskh Arabic", "Noto Sans Arabic", Tahoma, var(--font); }
+.paper .ph { color: #b3b9c2; }
+.r-head { margin-bottom: 1.6em; }
+.r-name { margin: 0; font-size: 2.5em; line-height: 1.1; letter-spacing: -.02em; font-weight: 750; color: #111; }
+.r-title { font-size: 1.2em; color: var(--ink); font-weight: 600; margin-top: .2em; }
+.r-contact { display: flex; flex-wrap: wrap; gap: .3em 1.4em; margin-top: .7em; color: #5a626e; }
+.r-sec { margin-top: 1.5em; break-inside: avoid-page; }
+.r-h { margin: 0 0 .7em; font-size: .86em; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); padding-bottom: .35em; border-bottom: .12em solid color-mix(in srgb, var(--ink) 30%, #fff); }
+.paper[dir="rtl"] .r-h { letter-spacing: 0; font-size: 1em; }
+.r-item { margin-bottom: 1em; break-inside: avoid; }
+.r-row { display: flex; justify-content: space-between; gap: 1em; align-items: baseline; }
+.r-row b { font-size: 1.08em; color: #111; }
+.r-when { color: #7a828e; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.r-sub { color: #5a626e; font-weight: 550; }
+.r-desc p { margin: .25em 0 0; }
+.r-desc ul { margin: .3em 0 0; padding-inline-start: 1.2em; }
+.r-desc li { margin: .15em 0; }
+.r-desc li::marker { color: var(--ink); }
+.r-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45em; }
+.r-tags li { padding: .2em .75em; border-radius: 1em; background: color-mix(in srgb, var(--ink) 11%, #fff); color: #23272e; }
+.r-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .4em; }
+.r-lvl { color: #7a828e; }
+
+/* Classic: centred header */
+.t-classic .r-head { text-align: center; padding-bottom: 1.2em; border-bottom: .2em solid var(--ink); }
+.t-classic .r-contact { justify-content: center; }
+
+/* Modern: coloured sidebar */
+.t-modern { display: grid; grid-template-columns: 31% 1fr; padding: 0; overflow: hidden; }
+.t-modern .r-side { background: var(--ink); color: #fff; padding: 4.4em 2em; }
+.t-modern .r-side .r-h { color: #fff; border-color: rgba(255, 255, 255, .35); }
+.t-modern .r-side .r-lvl { color: rgba(255, 255, 255, .7); }
+.t-modern .r-side .r-sec:first-child { margin-top: 0; }
+.t-modern .r-body { padding: 4.4em 3.4em 3em; min-width: 0; }
+
+/* Compact: denser, left-aligned with an accent rule */
+.t-compact { font-size: 1.48cqw; padding: 3.6em 4em; }
+.t-compact .r-head { border-inline-start: .45em solid var(--ink); padding-inline-start: 1em; margin-bottom: 1em; }
+.t-compact .r-name { font-size: 2.2em; }
+.t-compact .r-sec { margin-top: 1.1em; display: grid; grid-template-columns: 9em 1fr; gap: 1.2em; }
+.t-compact .r-h { border: 0; padding: 0; margin: 0; }
+.t-compact .r-item { margin-bottom: .7em; }
+
+@media (max-width: 900px) {
+  .cv-layout { grid-template-columns: minmax(0, 1fr); }
+  .paper-wrap { position: static; }
+}
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .s3-main { padding: 0; max-width: none; }
+  .s3-hero, .cv-bar, .cv-editor { display: none !important; }
+  .cv-layout { display: block; margin: 0; }
+  .paper-wrap { position: static; container-type: normal; }
+  .paper { width: 210mm; min-height: 296mm; aspect-ratio: auto; font-size: 9.5pt; border-radius: 0; box-shadow: none; }
+  .t-compact { font-size: 8.9pt; }
+  .paper .ph { visibility: hidden; }
+}
